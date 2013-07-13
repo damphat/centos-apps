@@ -1,7 +1,7 @@
 #get directory of this file
 DIR=$(cd "$(dirname "$BASH_SOURCE")" && pwd)
 
-if [ $(arch) -eq 'x86_64' ]
+if [ $(arch)=='x86_64' ]
 then
 	cp $DIR/10gen-64bits.repo /etc/yum.repos.d/10gen.repo  
 else
