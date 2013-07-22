@@ -1,0 +1,11 @@
+mongo
+  install
+  remove
+
+nginx
+  install
+  remove
+
+nodejs
+  install node npm
+  install express

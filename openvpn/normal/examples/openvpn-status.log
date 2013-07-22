@@ -1,8 +1,10 @@
 OpenVPN CLIENT LIST
-Updated,Mon Jul 15 11:08:00 2013
+Updated,Thu Jul 18 15:31:51 2013
 Common Name,Real Address,Bytes Received,Bytes Sent,Connected Since
+vpn.damphat.com,1.53.160.213:56590,60363,34009,Thu Jul 18 15:16:34 2013
 ROUTING TABLE
 Virtual Address,Common Name,Real Address,Last Ref
+10.8.0.6,vpn.damphat.com,1.53.160.213:56590,Thu Jul 18 15:20:17 2013
 GLOBAL STATS
 Max bcast/mcast queue length,0
 END
