@@ -1,39 +1,47 @@
 #! /bin/sh
 
-if [ $# != 2 ]; then
+help() {
 	echo Tool generate express website
 	echo 
 	echo Usage: gen \<proj_name\> [proj_domain]
-	echo 
+	echo
+}
+
+check_folder() {
+	if [ "$1" == ""	]; then
+		echo "ERROR: folder can not be empty"
+		exit 1
+	fi
+	
+	if [ -d "$1" ]; then
+		echo "ERROR: folder $1 already exist"
+		exit 2
+	fi
+}
+
+check_domain() {
+	if [ "$1" == "" ]; then
+		echo "ERROR: domain can not be empty"
+		exit 1
+	fi
+}
+
+if [ $# != 2 ]; then
+	help
 	exit 0
 fi
 
-# INPUTS proj_name, proj_domain
+proj_name=$1
+proj_domain=$2
 
-if [ "$1" == "" ]; then
-	read -p "Project name(folder name):" proj_name
-else
-	proj_name=$1
-fi
-
-if [ "$proj_name" == "" ]; then
-	echo "ERROR: proj_name can not be empty"
-	exit 1
-fi
-
-
-if [ -d "$proj_name" ]; then
-	echo "ERROR: folder already exist"
-	exit 2
-fi
-
-read -p "Project domain:" proj_domain
+check_folder $proj_name
+check_domain $proj_domain
 
 echo [==CREATE FOLDER ==]
 mkdir $proj_name
 
 if [ $? != 0 ]; then
-	echo "ERROR: folder already exist"
+	echo "ERROR: can not create folder $proj_name"
 	exit 3
 fi
 
@@ -48,7 +56,6 @@ fi
 
 echo [==GENERATE CODE==]
 express -s
-
 
 echo [==CREATE GIT REPO==]
 
