@@ -1,1 +1,0 @@
-vpn.damphat.com,10.8.0.4

@@ -1,0 +1,81 @@
+#! /bin/sh
+
+if [ $# != 2 ]; then
+	echo Tool generate express website
+	echo 
+	echo Usage: gen \<proj_name\> [proj_domain]
+	echo 
+	exit 0
+fi
+
+# INPUTS proj_name, proj_domain
+
+if [ "$1" == "" ]; then
+	read -p "Project name(folder name):" proj_name
+else
+	proj_name=$1
+fi
+
+if [ "$proj_name" == "" ]; then
+	echo "ERROR: proj_name can not be empty"
+	exit 1
+fi
+
+
+if [ -d "$proj_name" ]; then
+	echo "ERROR: folder already exist"
+	exit 2
+fi
+
+read -p "Project domain:" proj_domain
+
+echo [==CREATE FOLDER ==]
+mkdir $proj_name
+
+if [ $? != 0 ]; then
+	echo "ERROR: folder already exist"
+	exit 3
+fi
+
+cd $proj_name
+
+echo [==ENSURE INSTALL EXPRESS==]
+
+which express
+if [ $? != 0 ]; then 
+	npm install -g express
+fi
+
+echo [==GENERATE CODE==]
+express -s
+
+
+echo [==CREATE GIT REPO==]
+
+echo     [==download gitignore for nodejs project==]
+wget https://raw.github.com/github/gitignore/master/Node.gitignore -O .gitignore
+
+echo     [==git init; git add .; git commit -m==] 
+git init
+git add .
+git commit -m"generate project with express -s"
+
+
+echo [==INSTALL DEPENDENCIES==]
+npm install
+
+echo [==PUSH GITHUB==]
+echo [--create repository https://github.com/damphat/$proj_name.git]
+echo [--set origin--]
+echo [--push origin--]
+
+echo [==DEPLOY for the first time==]
+echo [--copy src to deploy directory--]
+echo [--choose available port--]
+echo [--create upstart to launch node at the port--]
+echo [--add config to nginx proxy to the port--]
+
+echo [==DEPLOY new source code==]
+echo [--rename current src dir--]
+echo [--deploy new code]
+echo [--restart node service $proj_domain--]

@@ -1,0 +1,2 @@
+yum remove nodejs npm
+
