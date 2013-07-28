@@ -1,4 +1,6 @@
-#! /bin/sh
+#!/usr/bin/env bash
+set -x
+trap read debug
 
 help() {
 	echo Tool generate express website
@@ -75,25 +77,40 @@ express -s
 
 echo [==CREATE GIT REPO==]
 
-echo     [==download gitignore for nodejs project==]
+echo "[--download gitignore for nodejs project--]"
 wget https://raw.github.com/github/gitignore/master/Node.gitignore -O .gitignore
 
-echo     [==git init; git add .; git commit -m==] 
+echo "[--git init; git add; git commit--]"
 git init
 git add .
 git commit -m"generate project with express -s"
-
 
 echo [==INSTALL DEPENDENCIES==]
 npm install
 
 echo [==PUSH GITHUB==]
-echo [--create repository https://github.com/damphat/$proj_name.git]
+echo [--create repository https://github.com/damphat/${proj_name}.git]
+curl -u 'damphat' https://api.github.com/user/repos -d "{\"name\":\"${proj_name}\"}"
+
 echo [--set origin--]
+git remote add origin https://damphat@github.com/damphat/${proj_name}.git
+
 echo [--push origin--]
+git push origin master
 
 echo [==DEPLOY for the first time==]
 echo [--copy src to deploy directory--]
+# check deploy directory for existing proj_domain
+mkdir /myprojects
+
+if [ -d "/myproject/${proj_domain}" ]; then
+	echo "ERROR can not deploy because /myproject/${proj_domain} already exist"
+	exit 1
+fi
+
+mkdir /myprojects/${proj_domain}
+git archive master | tar -xC /myprojects/${proj_domain}
+
 echo [--choose available port--]
 echo [--create upstart to launch node at the port--]
 echo [--add config to nginx proxy to the port--]
