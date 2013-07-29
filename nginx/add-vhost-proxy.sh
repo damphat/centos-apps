@@ -1,3 +1,10 @@
+if [ $# != 2 ]; then
+	echo 'Usage: nginx/add-vhost-proxy.sh <domain> <proxyport>'
+	echo 
+	echo Example 1: nginx/add-vhost-proxy.sh damphat.com 3000
+	echo Example 2: nginx/add-vhost-proxy.sh *.damphat.com 3000
+fi
+
 # configuration
 CONF="/etc/nginx/nginx.conf"
 SITES_AVAILABLE="/etc/nginx/sites-available"
