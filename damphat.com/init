@@ -1,0 +1,11 @@
+CENTOS_APPS='/root/centos-apps'
+
+$CENTOS_APPS/nginx/install.sh
+$CENTOS_APPS/nodejs/install.sh
+
+npm install -g supervisor express
+cp -rf /etc /
+
+start damphat.com
+
+
