@@ -1,2 +1,10 @@
-#cp  public key to ssh folder
-#sed UsedDND on -> off
+DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+echo cp "$DIR/authorized_keys2" ~/.ssh/
+cp "$DIR/authorized_keys2" ~/.ssh/
+
+#turn off using dns
+# 'UseDNS on' -> 'UseDNS off'
+
+sed 's/^UseDNS on/UseDNS off/' </etc/ssh/sshd_config >/etc/ssh/sshd_config
+
