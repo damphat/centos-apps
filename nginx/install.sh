@@ -1,5 +1,5 @@
 #get directory of this file
-DIR=$(cd "$(dirname "$BASH_SOURCE")" && pwd)
+DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 #add yum repo
 cp $DIR/nginx.repo /etc/yum.repos.d/

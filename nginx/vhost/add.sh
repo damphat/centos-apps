@@ -1,8 +1,9 @@
 if [ $# != 2 ]; then
-	echo 'Usage: nginx/add-vhost-proxy.sh <domain> <proxyport>'
+	echo 'Usage: nginx/vhost/add.sh <domain> <proxyport>'
 	echo 
-	echo Example 1: nginx/add-vhost-proxy.sh damphat.com 3000
-	echo Example 2: nginx/add-vhost-proxy.sh *.damphat.com 3000
+	echo Example 1: nginx/vhost/add.sh damphat.com 3000
+	echo Example 2: nginx/vhost/add.sh *.damphat.com 3000
+	exit 1
 fi
 
 # configuration
@@ -10,12 +11,13 @@ CONF="/etc/nginx/nginx.conf"
 SITES_AVAILABLE="/etc/nginx/sites-available"
 SITES_ENABLE="/etc/nginx/conf.d" 
 
-DOMAIN="damphat.com"
-DOMAIN_FILE="damphat.com.conf"
-PORT="3000"
+DOMAIN="$1"
+DOMAIN_FILE="$1.conf"
+DOMAIN_FILE=${DOMAIN_FILE//\*/_}
+PORT="$2"
 
 # add a site
-mkdir $SITES_AVAILABLE
+test -d $SITES_AVAILABLE || mkdir $SITES_AVAILABLE
 
 cd $SITES_AVAILABLE
 

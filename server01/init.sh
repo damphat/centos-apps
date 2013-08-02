@@ -2,6 +2,7 @@ DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 "$DIR/../ssh/init.sh"
 "$DIR/../nginx/install.sh"
+"#DIR/../nginx/add-vhost-proxy.sh" damphat.com 3000
 "$DIR/../nodejs/install.sh"
 
 
