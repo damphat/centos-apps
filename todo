@@ -1,1 +1,35 @@
 - avoid github asking password
+- download files to ~/tmp folder
+- test with non root accout
+
+
+- nginx/vhost/add-fastcgi
+- nginx/vhost/add-proxy
+
+server status:
+-nginx 
+	versiion: 
+(ssl support? optimized for regular expression)
+	config: /etc/nginx/
+	vhost-proxy:
+		*.damphat.com		http://127.0.0.1:3000 [OK]
+		*.yesvietnam.info	http://localhost:3001 [FAILE]
+		*.nodesnips.com
+	vhost-fastcgi:
+		*.chonxemay.com		localhost:9000        [FAILE]
+	other:
+		localhost
+	_
+
+-nodejs
+	node -v: 0.10.4
+	npm  -v:
+	express -V:
+
+upstart projects:
+	
+
+-mongodb
+	version: 
+	
+	
