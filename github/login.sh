@@ -13,7 +13,7 @@ USER=$1
 
 if ! [[ "$TRY" =~ "\"$USER\"" ]]; then
 
-	TOKEN=$(curl -s -u "$USER" -d '{"scope":["user", "repo", "delete_repo"], "note":"centos-aaps"}' https://api.github.com/authorizations | grep \"token\")
+	TOKEN=$(curl -s -u "$USER" -d "{\"scopes\":[\"user\", \"repo\", \"delete_repo\"], \"note\": \"centos-aaps-$(date +"%Y/%m/%d/%H:%M:%S")\"}" https://api.github.com/authorizations | grep \"token\")
 	TOKEN=$(expr "$TOKEN" : '.*"token" *: *"\([0-9a-z]*\)"')
 
 	echo $TOKEN > ~/github.token
