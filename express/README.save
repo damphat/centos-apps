@@ -1,0 +1,23 @@
+express/gen-repo-express-template PROJECT
+
+github/list
+github/delete PROJECT
+github/create PROJECT
+github/push PROJECT
+
+
+github/clone PROJECT /myprojects/PROJECT
+
+
+deploy PROJECT from github at PORT
+-git clone this project to /myprojects
+-cd this project
+-npm install
+-make sure install supervisor
+-make upstart for this
+-start this
+
+nginx/vhost/add-proxy SERVER_NAME PORT
+
+
+

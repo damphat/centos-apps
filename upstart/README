@@ -1,0 +1,25 @@
+./add-node.sh *.damphat.com   3001
+	OK
+
+./add-node.sh *.damphat.com   3001
+	ERROR: *.damphat.com already exist
+	SUGGEST: ./list.sh
+	SUGGEST: nano /etc/init/_.damphat.com.conf
+	SUGGEST: ./remove.sh *.damphat.com
+
+
+./add-node.sh *.nodesnips.com 3002
+./add-node.sh *.thivl.com     3001
+	ERROR: port already use by *.damphat.com
+
+list
+	DOMAIN		PORT	STATUS
+	------------------------------
+	*.damphat.com	3001	start
+	*.nodesnis.com	3002	stop
+	*.thivl.com	3003	error
+
+
+TODO
+	problem: supervisor high load because of 'watch'
+		

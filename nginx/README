@@ -1,0 +1,40 @@
+install
+*install/reinstall from repository, keep config, disable httpd, enable nginx
+	REINSTALLING	[OK]
+
+-add nginx repo
+-yum install
+-stop httpd
+-start nginx
+
+remove
+*remove, keep config, enable httpd
+-yum remove
+-remove repo
+-stop nginx
+-start httpd
+
+status 
+	version 1.4.1
+	https support
+	log /var/log/nginx/
+	conf /etc/nginx/nginx.conf
+	vhosts /etc/nginx/conf.d/
+	list of virtual hosts
+	
+
+vhost/add-proxy    *.damphat.com  http://127.0.0.1:3000
+vhost/add-fastcgi  *.wpforum.com
+vhost/remove       *.damphat.com
+vhost/list
+
+	SERVER_NAME		PROXY
+	--------------------------------------------
+	*.damphat.com		http://127.0.0.1:3000
+	*.nodesnips.com		http://127.0.0.1:3001
+
+
+	SERVER_NAME		FASTCGI
+	--------------------------------------------
+	*.wpforum.com		localhost:9000
+

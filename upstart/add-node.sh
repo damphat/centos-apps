@@ -5,7 +5,7 @@ if [ $# != 2 ]; then
 	exit 1
 fi
 
-PROJECT_NAME=$1
+PROJECT_NAME=${1//\*/_}
 PORT=$2
 
 if [ ! -f /myprojects/$PROJECT_NAME/app.js ]; then
@@ -29,7 +29,8 @@ stop on shutdown
 script
         cd /myprojects/$PROJECT_NAME
         export PORT=$PORT
-	supervisor app.js
+	export NODE_ENV=production
+	supervisor -w -- app.js # "-w" disable watch because of server high load
 end script
 _EOF_
 

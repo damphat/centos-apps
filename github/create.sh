@@ -4,4 +4,7 @@ if [ $# != 1 ]; then
 	echo 'Example: github/create.sh damphat.com'
 fi
 
-curl -u 'damphat' https://api.github.com/user/repos -d "{\"name\":\"$1\"}"
+DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+$DIR/login.sh
+
+curl -H "Authorization: bearer $(cat ~/github.token)"  https://api.github.com/user/repos -d "{\"name\": \"$1\"}"
