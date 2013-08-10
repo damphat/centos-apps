@@ -1,3 +1,4 @@
+#? create an empty github repository
 if [ $# != 1 ]; then
 	echo 'Usage: github/create.sh <REPO>'
 	echo

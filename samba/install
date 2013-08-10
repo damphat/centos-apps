@@ -2,6 +2,9 @@ NETBIOS_NAME="CENTOS"
 
 yum install samba -y
 
+mkdir /shares
+chmod 777 /shares
+
 cat > /etc/samba/smb.conf <<EOF
 [global]
 workgroup = WORKGROUP
@@ -15,7 +18,7 @@ smb passwd file = /etc/samba/smbpasswd
 socket options = TCP_NODELAY SO_RCVBUF=8192 SO_SNDBUF=8192
 
 [shares]
-comment = Downloads
+comment = default share folder
 path = /shares
 browseable = yes
 guest ok = yes
@@ -29,3 +32,7 @@ chkconfig smb on
 chkconfig nmb on
 service smb start
 service nmb start
+
+echo '========================='
+echo 'Want to share a folder?  '
+echo '# vi /etc/samba/smb.conf '

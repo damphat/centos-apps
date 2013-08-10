@@ -1,4 +1,4 @@
-#list all repositories
+#? list all repositories
 
 DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 $DIR/login.sh

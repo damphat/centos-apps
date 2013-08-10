@@ -1,3 +1,4 @@
+#? delete github repo
 USER=$(cat ~/github.user)
 TOKEN=$(cat ~/github.token)
 REPO=$1
