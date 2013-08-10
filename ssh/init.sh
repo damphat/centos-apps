@@ -7,7 +7,7 @@ ssh-keygen -f ~/.ssh/id_rsa -N ""
 #cp "$DIR/dell-pc.pub" ~/.ssh/authorized_keys2
 
 #==UPLOAD ID_RSA.PUB to GITHUB (make github accept this server)
-$DIR/../github/add-ssh-key.sh "$(hostname; whoami)" "$(cat ~/.ssh/id_rsa.pub)"
+$DIR/../github/add-ssh-key.sh "$(hostname) $(whoami)" "$(cat ~/.ssh/id_rsa.pub)"
 
 #==DISABLE USEDNS (make ssh connecting faster)
 #turn off using dns 'UseDNS yes' -> 'UseDNS no'

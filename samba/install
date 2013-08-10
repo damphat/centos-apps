@@ -1,0 +1,31 @@
+NETBIOS_NAME="CENTOS"
+
+yum install samba -y
+
+cat > /etc/samba/smb.conf <<EOF
+[global]
+workgroup = WORKGROUP
+netbios name = $NETBIOS_NAME
+server string = "Centos machine"
+log file = /var/log/samba/%m.log
+security = share
+guest account = nobody
+encrypt passwords = yes
+smb passwd file = /etc/samba/smbpasswd
+socket options = TCP_NODELAY SO_RCVBUF=8192 SO_SNDBUF=8192
+
+[shares]
+comment = Downloads
+path = /shares
+browseable = yes
+guest ok = yes
+writable = yes
+public = yes
+read only = no
+
+EOF
+
+chkconfig smb on
+chkconfig nmb on
+service smb start
+service nmb start
