@@ -13,7 +13,7 @@ if [ $# != 2 ]; then
 fi
 
 DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-$DIR/login.sh
+$DIR/login
 
 curl  -H "Authorization: token $(cat ~/github.token)" -d "{\"title\":\"$1\", \"key\":\"$2\"}" https://api.github.com/user/keys
 
