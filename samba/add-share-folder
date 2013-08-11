@@ -1,0 +1,39 @@
+SMB_CONF='/etc/samba/smb.conf'
+
+echo "==LIST SHARE NAMES=="
+cat /etc/samba/smb.conf | grep '^\[.*\]'
+
+echo ==ADD SHARE FOLDER==
+read -p "  Enter sharename: " SHARE_NAME
+RET=$(cat /etc/samba/smb.conf | grep "^\[$SHARE_NAME\]")
+
+if [ "$RET" != "" ]; then
+	echo "  $SHARE_NAME already exist"
+	echo "  FAILE :("
+	exit 1
+fi
+
+read -p "  Enter /absolute_path/to/dir: " SHARE_PATH
+SHARE_PATH=$(readlink -f "$SHARE_PATH")
+echo    "  Your path is : $SHARE_PATH"
+
+test -d "$SHARE_PATH" || {
+	read -p "  $SHARE_PATH is not exist, create it? "
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		mkdir "$SHARE_PATH" && echo "  created!" || { echo "  FAILE :("; exit 1; } 
+	fi 
+}
+
+#remove because of dangerous
+#chmod +rw "$SHARE_PATH"
+
+echo '
+[$SHARE_NAME]
+comment = default share folder
+path = $SHARE_PATH
+browseable = yes
+guest ok = yes
+writable = yes
+public = yes
+read only = no
+' >> $SMB_CONF
