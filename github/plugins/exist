@@ -1,4 +1,11 @@
-#[[ "$(ls)" =~ "exist" ]] && echo "OK"
+DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+$DIR/login
+
+TEXT=$(curl -s -H "Authorization: token $(cat ~/github.token)" https://api.github.com/user/repos | grep '"name": "$1')
+
+echo $TEXT
+exit 0
+
 
 if [[ "$(curl https://api.github.com/repos/damphat/$1 | grep Found)" =~ "Not Found" ]]; then
 	echo "Not found"

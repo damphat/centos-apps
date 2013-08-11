@@ -28,6 +28,18 @@ read only = no
 
 EOF
 
+
+echo '==Disable SELINUX=='
+sed -i 's/^ *SELINUX *=.*/SELINUX=disable/' /etc/selinux/config
+
+if [ $? == 0 ]; then
+	echo '    OK - you may need restart server'
+else
+	echo '    FAILE'
+fi
+
+
+
 chkconfig smb on
 chkconfig nmb on
 service smb start

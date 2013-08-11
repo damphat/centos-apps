@@ -1,0 +1,1 @@
+expr "$(ifconfig | grep inet)" : " *inet addr:\([0-9.]*\)"

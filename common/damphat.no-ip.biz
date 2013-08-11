@@ -1,0 +1,23 @@
+
+echo "==Update damphat.no-ip.biz with this firt ip (often LAN IP)=="
+DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+PASS_FILE=~/.noip.pass
+
+echo "  Your LAN-IP is: $($DIR/getip)"
+
+[[ -f "$PASS_FILE" ]] && PASS=$(cat "$PASS_FILE")
+
+if [ "$PASS" == "" ]; then
+	read -p "  Enter password for  damphat@noip.com):" -s PASS
+	echo "  Write password to $PASS_FILE"
+	echo $PASS > "$PASS_FILE"
+else
+	echo "  Using password from $PASS_FILE"
+fi
+
+
+echo "  Updating..."
+
+TEXT=$(curl -s -H "User-Agen: damphat-no-ip/1.0 damphat@gmail.com" http://damphat:$PASS@dynupdate.no-ip.com/nic/update?hostname=damphat.no-ip.biz\&myip=$($DIR/getip))
+
+echo "  Result:$TEXT"
