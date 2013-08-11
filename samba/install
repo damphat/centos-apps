@@ -35,7 +35,7 @@ sed -i 's/^ *SELINUX *=.*/SELINUX=disable/' /etc/selinux/config
 if [ $? == 0 ]; then
 	echo '    OK - you may need restart server'
 else
-	echo '    FAILE'
+	echo '    FAILE :('
 fi
 
 
@@ -47,4 +47,6 @@ service nmb start
 
 echo '========================='
 echo 'Want to share a folder?  '
+echo '# samba/add-share-folder '
 echo '# vi /etc/samba/smb.conf '
+

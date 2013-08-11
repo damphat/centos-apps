@@ -27,13 +27,21 @@ test -d "$SHARE_PATH" || {
 #remove because of dangerous
 #chmod +rw "$SHARE_PATH"
 
-echo '
+read -p "  Share $SHARE_PATH as $SHARE_NAME. Sure?"
+if ! [[ $REPLY =~ ^[Yy]$ ]]; then
+    exit 1
+fi
+
+
+cat >> "$SMB_CONF" <<EOF 
 [$SHARE_NAME]
-comment = default share folder
-path = $SHARE_PATH
-browseable = yes
-guest ok = yes
-writable = yes
-public = yes
-read only = no
-' >> $SMB_CONF
+  comment = by samba/add-share-folder
+  path = $SHARE_PATH
+  browseable = yes
+  guest ok = yes
+  writable = yes
+  public = yes
+  read only = no
+EOF
+
+[ $? == 0 ] && echo "  DONE!" || echo "  FAILE :("
