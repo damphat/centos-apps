@@ -1,8 +1,13 @@
+DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+$DIR/install-rpel-repo/repel6.sh
+
 yum install openvpn -y
 
 echo '==install as server=='
 echo '  cp mini/server.conf /etc/openvpn/10.8.0.1.conf'
 cp $DIR/mini/server.conf /etc/openvpn/10.8.0.1.conf
+cp $DIR/mini/static.key /etc/openvpn/
 
 service openvpn start
 chkconfig openvpn on
