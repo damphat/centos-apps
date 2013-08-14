@@ -1,0 +1,15 @@
+yum install openvpn -y
+
+echo '==install as server=='
+echo '  cp mini/server.conf /etc/openvpn/10.8.0.1.conf'
+cp $DIR/mini/server.conf /etc/openvpn/10.8.0.1.conf
+
+service openvpn start
+chkconfig openvpn on
+
+echo '==note=='
+echo '  you should disable firewall'
+echo '  search to known why server stop response ocasionaly'
+echo 
+
+

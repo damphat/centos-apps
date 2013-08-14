@@ -1,0 +1,1 @@
+ifconfig | sed -n '/inet addr:/s/[^:]\+:\(\S\+\).*/\1/p'
