@@ -1,0 +1,5 @@
+for i in /etc/openvpn/*.conf; do
+	echo $i
+	echo "  $(cat "$i" | grep port)"
+	echo "  $(cat "$i" | grep proto)"
+done

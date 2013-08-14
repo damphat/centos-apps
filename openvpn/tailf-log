@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 tailf /etc/message
+=======
+tailf /var/log/messages
+>>>>>>> 6d5f1a18acfd824bb8d923effb88c92691be3cfe
