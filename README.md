@@ -1,6 +1,8 @@
-Project Convention
+About project
 ===========================
 
+Concepts
+===========================
 **modules**
 * module is a folder in project $project-folder
 * main file of module have the same
@@ -9,17 +11,32 @@ Project Convention
 - plugin is a file in $project-folder/plugins
 
 **user-data**
-- store at ~/.centos-apps/$module/$name
-- access via API
 
-**libs**
-- internal use: ex 
--- user-store-get name value 
--- user-store-set name value
--- user-store-del name
--- bash-dir-get
+tags: store personal-data, security, home-dir, user-data with sudo,   
 
-**bash-file-conventions**
+each login has its own personal data, data is protected
+```bash
+# user-data store at ~/.centos-apps/$module/$name
+# should be accessed via apis:
+user-store-get name value 
+user-store-set name value
+user-store-del name
+```
+
+**project apis**
+
+common apis for modules
+
+```bash
+project-dir-get
+module-dir-get
+bash-dir-get
+```
+
+Structure and Convention
+===========================
+
+
 - no extension
 - template
 
