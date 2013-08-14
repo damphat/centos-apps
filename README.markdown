@@ -28,11 +28,12 @@ Project Convention
 # description: install nginx engine from repo
 # author: damphat
 # requires: rhel-repo
-# params:
+# params: param-a param-b
 
 DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
-script here.
+bash script here.
+
 </pre>
 
 <pre>
