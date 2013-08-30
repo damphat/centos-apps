@@ -1,0 +1,2 @@
+nano /etc/vsftpd/vsftpd.conf
+service vsftpd restart

@@ -1,1 +1,1 @@
-expr "$(ifconfig | grep inet)" : " *inet addr:\([0-9.]*\)"
+./get-all-ipv4 | sed /^127/d | head -1

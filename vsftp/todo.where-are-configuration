@@ -1,0 +1,58 @@
+$cat /etc/pam.d/vsftpd
+#%PAM-1.0
+session    optional     pam_keyinit.so    force revoke
+auth       required pam_listfile.so item=user sense=deny file=/etc/vsftpd/ftpusers onerr=succeed
+auth       required pam_shells.so
+auth       include  password-auth
+account    include  password-auth
+session    required     pam_loginuid.so
+session    include  password-auth
+
+
+$ls /etc/vsftpd/ -1
+ftpusers
+user_list
+vsftpd.conf
+vsftpd_conf_migrate.sh
+
+
+$cat /etc/vsftpd/ftpusers
+# Users that are not allowed to login via ftp
+root
+bin
+daemon
+adm
+lp
+sync
+shutdown
+halt
+mail
+news
+uucp
+operator
+games
+nobody
+
+# cat /etc/vsftpd/user_list
+# vsftpd userlist
+# If userlist_deny=NO, only allow users in this file
+# If userlist_deny=YES (default), never allow users in this file, and
+# do not even prompt for a password.
+# Note that the default vsftpd pam config also checks /etc/vsftpd/ftpusers
+# for users that are denied.
+root
+bin
+daemon
+adm
+lp
+sync
+shutdown
+halt
+mail
+news
+uucp
+operator
+games
+nobody
+
+

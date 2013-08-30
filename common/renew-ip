@@ -1,0 +1,1 @@
+dhclient -r && dhclient -v

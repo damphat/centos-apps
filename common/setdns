@@ -1,0 +1,5 @@
+echo not implement!
+echo nano /etc/sysconfig/network-scripts/ifcfg-eth0 
+echo add or change: PEERDNS=no
+echo nano /etc/resolv.conf
+echo change: nameserver 8.8.8.8

@@ -1,1 +1,2 @@
 nano /etc/samba/smb.conf
+service smb restart

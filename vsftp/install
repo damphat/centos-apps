@@ -1,0 +1,16 @@
+#https://www.digitalocean.com/community/articles/how-to-set-up-vsftpd-on-centos-6--2
+
+# step 1 - install vsftpd
+yum install vsftpd
+
+# step 2 - install FTP client
+yum install ftp
+
+# step 3 - configure vsftpd
+
+# turn on vsfptd ftp service
+chkconfig vsftpd on
+
+# how do I start vsftpd ftp server
+service vsftpd start
+
